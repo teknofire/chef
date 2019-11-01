@@ -20,6 +20,7 @@
 require "forwardable" unless defined?(Forwardable)
 require_relative "version"
 require "mixlib/cli" unless defined?(Mixlib::CLI)
+require "chef-utils/dsl/path_sanity" unless defined?(ChefUtils::DSL::PathSanity)
 require_relative "workstation_config_loader"
 require_relative "mixin/convert_to_class_name"
 require_relative "mixin/path_sanity"
@@ -39,7 +40,7 @@ class Chef
     Chef::HTTP::HTTPRequest.user_agent = "#{Chef::Dist::PRODUCT} Knife#{Chef::HTTP::HTTPRequest::UA_COMMON}"
 
     include Mixlib::CLI
-    include ChefUtils::PathSanity
+    include ChefUtils::DSL::PathSanity
     extend Chef::Mixin::ConvertToClassName
     extend Forwardable
 

@@ -16,7 +16,7 @@
 # limitations under the License.
 
 require "mixlib/shellout" unless defined?(Mixlib::ShellOut::DEFAULT_READ_TIMEOUT)
-require "chef-utils/path_sanity"
+require "chef-utils/dsl/path_sanity" unless defined?(ChefUtils::DSL::PathSanity)
 
 class Chef
   module Mixin
@@ -96,7 +96,7 @@ class Chef
             "LC_ALL" => Chef::Config[:internal_locale],
             "LANGUAGE" => Chef::Config[:internal_locale],
             "LANG" => Chef::Config[:internal_locale],
-            env_path => ChefUtils::PathSanity.sanitized_path,
+            env_path => ChefUtils::DSL::PathSanity.sanitized_path,
           }.update(options[env_key] || {})
         end
         options

@@ -24,7 +24,7 @@ require "spec_helper"
 require "chef/mixin/path_sanity"
 
 describe Chef::Mixin::ShellOut do
-  include ChefUtils::PathSanity
+  include ChefUtils::DSL::PathSanity
   let(:shell_out_class) { Class.new { include Chef::Mixin::ShellOut } }
   subject(:shell_out_obj) { shell_out_class.new }
 

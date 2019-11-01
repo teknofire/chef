@@ -221,7 +221,7 @@ class Chef
 
     def platform_family_query_helper?(node, m)
       method = "#{m}?".to_sym
-      ChefUtils::PlatformFamily.respond_to?(method) && ChefUtils::PlatformFamily.send(method, node)
+      ChefUtils::DSL::PlatformFamily.respond_to?(method) && ChefUtils::DSL::PlatformFamily.send(method, node)
     end
 
     #

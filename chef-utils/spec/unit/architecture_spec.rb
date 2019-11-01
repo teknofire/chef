@@ -13,7 +13,7 @@ def arch_reports_true_for(*args)
   end
 end
 
-RSpec.describe ChefUtils::Architecture do
+RSpec.describe ChefUtils::DSL::Architecture do
   let(:node) { { "kernel" => { "machine" => arch } } }
 
   ( HELPER_MODULES - [ described_class ] ).each do |klass|

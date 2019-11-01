@@ -23,8 +23,8 @@ require "chef-utils" unless defined?(ChefUtils::CANARY)
 class Chef
   class Provider
     class Service < Chef::Provider
-      include ChefUtils::Service
-      extend ChefUtils::Service
+      include ChefUtils::DSL::Service
+      extend ChefUtils::DSL::Service
 
       def supports
         @supports ||= new_resource.supports.dup

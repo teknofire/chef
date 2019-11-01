@@ -15,13 +15,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "chef-utils/which"
-require "chef-utils/path_sanity"
+require "chef-utils/dsl/which" unless defined?(ChefUtils::DSL::Which)
+require "chef-utils/dsl/path_sanity" unless defined?(ChefUtils::DSL::PathSanity)
 
 class Chef
   module Mixin
     module Which
-      include ChefUtils::Which
+      include ChefUtils::DSL::Which
 
       private
 
@@ -29,7 +29,7 @@ class Chef
       #
       # @api private
       def __extra_path
-        ChefUtils::PathSanity.sane_paths
+        ChefUtils::DSL::PathSanity.sane_paths
       end
     end
   end

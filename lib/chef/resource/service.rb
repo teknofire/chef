@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-require "chef-utils" unless defined?(ChefUtils::CANARY)
+require "chef-utils/dsl/service" unless defined?(ChefUtils::DSL::Service)
 require_relative "../resource"
 require "shellwords" unless defined?(Shellwords)
 require_relative "../dist"
@@ -25,8 +25,8 @@ require_relative "../dist"
 class Chef
   class Resource
     class Service < Chef::Resource
-      include ChefUtils::Service
-      extend ChefUtils::Service
+      include ChefUtils::DSL::Service
+      extend ChefUtils::DSL::Service
 
       provides :service, target_mode: true
 

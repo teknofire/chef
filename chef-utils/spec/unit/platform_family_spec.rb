@@ -14,7 +14,7 @@ def pf_reports_true_for(*args)
   end
 end
 
-RSpec.describe ChefUtils::PlatformFamily do
+RSpec.describe ChefUtils::DSL::PlatformFamily do
   let(:node) { Fauxhai.mock(options).data }
 
   ( HELPER_MODULES - [ described_class ] ).each do |klass|

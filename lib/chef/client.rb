@@ -20,7 +20,7 @@
 
 require_relative "config"
 require_relative "mixin/params_validate"
-require "chef-utils/path_sanity"
+require "chef-utils/dsl/path_sanity" unless defined?(ChefUtils::DSL::PathSanity)
 require_relative "log"
 require_relative "deprecated"
 require_relative "server_api"

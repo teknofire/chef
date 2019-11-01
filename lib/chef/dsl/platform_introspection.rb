@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-require "chef-utils/dsl"
+require "chef-utils" unless defined?(ChefUtils::CANARY)
 
 class Chef
   module DSL
@@ -24,7 +24,7 @@ class Chef
     # Provides the DSL for platform-dependent switch logic, such as
     # #value_for_platform.
     module PlatformIntrospection
-      include ChefUtils::DSL
+      include ChefUtils
 
       # Implementation class for determining platform dependent values
       class PlatformDependentValue

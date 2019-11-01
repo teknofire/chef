@@ -2,22 +2,22 @@ require "chef-utils"
 
 # FIXME: dynamically generate this for accuracy
 HELPER_MODULES = [
-  ChefUtils::Architecture,
-  ChefUtils::Internal,
-  ChefUtils::Introspection,
-  ChefUtils::OS,
-  ChefUtils::PathSanity,
-  ChefUtils::Platform,
-  ChefUtils::PlatformFamily,
-  ChefUtils::Service,
-  ChefUtils::Which,
+  ChefUtils::DSL::Architecture,
+  ChefUtils::DSL::Internal,
+  ChefUtils::DSL::Introspection,
+  ChefUtils::DSL::OS,
+  ChefUtils::DSL::PathSanity,
+  ChefUtils::DSL::Platform,
+  ChefUtils::DSL::PlatformFamily,
+  ChefUtils::DSL::Service,
+  ChefUtils::DSL::Which,
 ].freeze
 
-ARCH_HELPERS = (ChefUtils::Architecture.methods - Module.methods).freeze
-OS_HELPERS = (ChefUtils::OS.methods - Module.methods).freeze
-PLATFORM_HELPERS = (ChefUtils::Platform.methods - Module.methods).freeze
-PLATFORM_FAMILY_HELPERS = (ChefUtils::PlatformFamily.methods - Module.methods).freeze
-INTROSPECTION_HELPERS = (ChefUtils::Introspection.methods - Module.methods).freeze
+ARCH_HELPERS = (ChefUtils::DSL::Architecture.methods - Module.methods).freeze
+OS_HELPERS = (ChefUtils::DSL::OS.methods - Module.methods).freeze
+PLATFORM_HELPERS = (ChefUtils::DSL::Platform.methods - Module.methods).freeze
+PLATFORM_FAMILY_HELPERS = (ChefUtils::DSL::PlatformFamily.methods - Module.methods).freeze
+INTROSPECTION_HELPERS = (ChefUtils::DSL::Introspection.methods - Module.methods).freeze
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

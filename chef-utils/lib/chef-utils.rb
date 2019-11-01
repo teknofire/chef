@@ -15,21 +15,28 @@
 # limitations under the License.
 #
 
-require_relative "chef-utils/dsl"
-require_relative "chef-utils/path_sanity"
-require_relative "chef-utils/service"
-require_relative "chef-utils/train_helpers"
-require_relative "chef-utils/which"
+require_relative "chef-utils/dsl/architecture"
+require_relative "chef-utils/dsl/introspection"
+require_relative "chef-utils/dsl/os"
+require_relative "chef-utils/dsl/path_sanity"
+require_relative "chef-utils/dsl/platform"
+require_relative "chef-utils/dsl/platform_family"
+require_relative "chef-utils/dsl/service"
+require_relative "chef-utils/dsl/train_helpers"
+require_relative "chef-utils/dsl/which"
+require_relative "chef-utils/mash"
 
-#
-# All helpers are loaded into the ChefUtils class.
-#
+# This is the Chef Infra Client DSL, not everytihng needs to go in here
 module ChefUtils
-  include ChefUtils::DSL
-  include ChefUtils::PathSanity
-  include ChefUtils::Service
-  include ChefUtils::TrainHelpers
-  include ChefUtils::Which
+  include ChefUtils::DSL::Architecture
+  include ChefUtils::DSL::OS
+  include ChefUtils::DSL::PlatformFamily
+  include ChefUtils::DSL::Platform
+  include ChefUtils::DSL::Introspection
+  # FIXME: include ChefUtils::DSL::Which in Chef 16.0
+  # FIXME: include ChefUtils::DSL::PathSanity in Chef 16.0
+  # FIXME: include ChefUtils::DSL::TrainHelpers in Chef 16.0
+  # ChefUtils::DSL::Service is deliberately excluded
 
   CANARY = 1 # used as a guard for requires
   extend self

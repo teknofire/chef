@@ -27,12 +27,12 @@ class Chef
         def service_resource_providers
           providers = []
 
-          providers << :debian if ChefUtils::Service.debianrcd?
-          providers << :invokercd if ChefUtils::Service.invokercd?
-          providers << :upstart if ChefUtils::Service.upstart?
-          providers << :insserv if ChefUtils::Service.insserv?
+          providers << :debian if ChefUtils::DSL::Service.debianrcd?
+          providers << :invokercd if ChefUtils::DSL::Service.invokercd?
+          providers << :upstart if ChefUtils::DSL::Service.upstart?
+          providers << :insserv if ChefUtils::DSL::Service.insserv?
           providers << :systemd if ChefUtils.systemd?
-          providers << :redhat if ChefUtils::Service.redhatrcd?
+          providers << :redhat if ChefUtils::DSL::Service.redhatrcd?
 
           providers
         end
@@ -40,11 +40,11 @@ class Chef
         def config_for_service(service_name)
           configs = []
 
-          configs << :initd if ChefUtils::Service.service_script_exist?(:initd, service_name)
-          configs << :upstart if ChefUtils::Service.service_script_exist?(:upstart, service_name)
-          configs << :xinetd if ChefUtils::Service.service_script_exist?(:xinetd, service_name)
-          configs << :systemd if ChefUtils::Service.service_script_exist?(:systemd, service_name)
-          configs << :etc_rcd if ChefUtils::Service.service_script_exist?(:etc_rcd, service_name)
+          configs << :initd if ChefUtils::DSL::Service.service_script_exist?(:initd, service_name)
+          configs << :upstart if ChefUtils::DSL::Service.service_script_exist?(:upstart, service_name)
+          configs << :xinetd if ChefUtils::DSL::Service.service_script_exist?(:xinetd, service_name)
+          configs << :systemd if ChefUtils::DSL::Service.service_script_exist?(:systemd, service_name)
+          configs << :etc_rcd if ChefUtils::DSL::Service.service_script_exist?(:etc_rcd, service_name)
 
           configs
         end

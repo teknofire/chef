@@ -22,7 +22,7 @@ class Chef
       # FIXME: deprecatad
       def enforce_path_sanity(env = ENV)
         if Chef::Config[:enforce_path_sanity]
-          env["PATH"] = ChefUtils::PathSanity.sanitized_path(env)
+          env["PATH"] = ChefUtils::DSL::PathSanity.sanitized_path(env)
         end
       end
     end

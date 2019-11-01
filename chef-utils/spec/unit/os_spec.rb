@@ -14,7 +14,7 @@ def os_reports_true_for(*args)
   end
 end
 
-RSpec.describe ChefUtils::OS do
+RSpec.describe ChefUtils::DSL::OS do
   let(:node) { Fauxhai.mock(options).data }
 
   ( HELPER_MODULES - [ described_class ] ).each do |klass|

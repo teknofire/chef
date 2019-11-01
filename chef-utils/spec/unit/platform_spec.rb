@@ -35,11 +35,11 @@ def platform_reports_true_for(*args)
   end
 end
 
-RSpec.describe ChefUtils::Platform do
+RSpec.describe ChefUtils::DSL::Platform do
   let(:node) { Fauxhai.mock(options).data }
 
   class ThingWithANode
-    include ChefUtils::Platform
+    include ChefUtils::DSL::Platform
     attr_accessor :node
     def initialize(node)
       @node = node
@@ -47,7 +47,7 @@ RSpec.describe ChefUtils::Platform do
   end
 
   class ThingWithARunContext
-    include ChefUtils::Platform
+    include ChefUtils::DSL::Platform
     class RunContext
       attr_accessor :node
     end
@@ -59,7 +59,7 @@ RSpec.describe ChefUtils::Platform do
   end
 
   class ThingWithTheDSL
-    include ChefUtils::DSL
+    include ChefUtils
     attr_accessor :node
     def initialize(node)
       @node = node
