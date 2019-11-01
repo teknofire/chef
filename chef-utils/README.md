@@ -149,11 +149,40 @@ use the Platform Family helper level instead.
 
 * `sanitized_path`
 
-## Calling Conventions
+## Documentation for Software Developers
 
-The modules here should be included into a DSL class in order to be used directly.  To avoid 
+The design of the DSL helper libraries in this gem are designed around the Chef Infra Client use cases.  Most of the helpers are
+accessible through the Chef DSL directly via the `ChefUtils::DSL` module.  They are also available via class method calls on
+the ChefUtils module directly (e.g. `ChefUtils.debian?`).  For that to be possible there is Chef Infra Client specific wiring in
+the `ChefUtils::Internal` class allowing the helpers to access the `Chef.run_context` global values.  This allows them to be
+used from library helpers in cookbooks inside Chef Infra Client.
 
+For external use in other gems, this automatic wiring will not work correctly, and so it will not generally be possible to
+call helpers off of the `ChefUtils` class (somee exceptions that do not require a node-like object or a train connection will
+may still work).  For use in other gems you should create your own module and mixin the helper class.  If you have a node
+method in your class/module then that method will be used.
 
+You can wire up a module which implements the Chef DSL with your own wiring using this template:
+
+```ruby
+module MyDSL
+  include ChefUtils::DSL # or any individual module with DSL methods in it
+
+  private
+
+  def __getnode
+    # return something Mash-like with node semantics with a node["platform"], etc.
+  end
+
+  def __transport_connection
+    # return a Train::Transport connection
+  end
+
+  extend self # if your wiring is to global state to make `MyDSL.helper?` work.
+end
+```
+
+Those methods are marked API private for the purposes of end-users, but are public APIs for the purposes of software development.
 
 ## Getting Involved
 
