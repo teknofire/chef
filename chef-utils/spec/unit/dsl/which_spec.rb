@@ -26,10 +26,10 @@ RSpec.describe ChefUtils::DSL::Which do
   let(:test) { TestClass.new }
 
   describe "#which" do
-    def self.test_which(description, *args, finds: nil, others: [], directory: false, &block)
+    def self.test_which(description, *args, path: ["/dir1", "/dir2" ].join(File::PATH_SEPARATOR), finds: nil, others: [], directory: false, &block)
       it description do
         # stub the ENV['PATH']
-        expect(test).to receive(:__env_path).and_return(["/dir1", "/dir2" ].join(File::PATH_SEPARATOR))
+        expect(ENV).to receive(:[]).with("PATH").and_return(path)
 
         # most files should not be found
         allow(File).to receive(:executable?).and_return(false)
@@ -98,13 +98,17 @@ RSpec.describe ChefUtils::DSL::Which do
         true
       end
     end
+
+    context "nil path" do
+      test_which("returns false when it does not find anything", "foo1", path: nil)
+    end
   end
 
   describe "#where" do
-    def self.test_where(description, *args, finds: [], others: [], &block)
+    def self.test_where(description, *args, path: ["/dir1", "/dir2" ].join(File::PATH_SEPARATOR), finds: [], others: [], &block)
       it description do
         # stub the ENV['PATH']
-        expect(test).to receive(:__env_path).and_return(["/dir1", "/dir2" ].join(File::PATH_SEPARATOR))
+        expect(ENV).to receive(:[]).with("PATH").and_return(path)
 
         # most files should not be found
         allow(File).to receive(:executable?).and_return(false)
@@ -155,6 +159,10 @@ RSpec.describe ChefUtils::DSL::Which do
       test_where("does not finds foo1 and foo2 if they exist and the block is false", "foo1", "foo2", others: [ "/dir1/foo2", "/dir2/foo2" ]) do
         false
       end
+    end
+
+    context "with a nil path" do
+      test_where("returns empty array when it doesn't find anything", "foo1", path: nil)
     end
   end
 end

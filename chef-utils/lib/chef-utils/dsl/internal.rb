@@ -57,9 +57,9 @@ module ChefUtils
       # @api private
       def __env_path
         if __transport_connection
-          __transport_connection.run_command("echo $PATH").stdout
+          __transport_connection.run_command("echo $PATH").stdout || ""
         else
-          ENV["PATH"]
+          ENV["PATH"] || ""
         end
       end
 
