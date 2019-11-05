@@ -3,7 +3,6 @@ require "chef-utils"
 # FIXME: dynamically generate this for accuracy
 HELPER_MODULES = [
   ChefUtils::DSL::Architecture,
-  ChefUtils::DSL::Internal,
   ChefUtils::DSL::Introspection,
   ChefUtils::DSL::OS,
   ChefUtils::DSL::PathSanity,

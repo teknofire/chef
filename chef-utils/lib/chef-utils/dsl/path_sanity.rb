@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require_relative "internal"
+require_relative "../internal"
 require_relative "platform_family"
 
 module ChefUtils

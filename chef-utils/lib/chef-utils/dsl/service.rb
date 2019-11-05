@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-require_relative "internal"
+require_relative "../internal"
 require_relative "train_helpers"
 
 module ChefUtils

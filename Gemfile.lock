@@ -27,11 +27,6 @@ GIT
 PATH
   remote: .
   specs:
-    chef-utils (15.4.54)
-
-PATH
-  remote: ..
-  specs:
     chef (15.4.54)
       addressable
       bcrypt_pbkdf (~> 1.0)
@@ -64,6 +59,11 @@ PATH
       train-winrm (>= 0.2.5)
       tty-screen (~> 0.6)
       uuidtools (~> 2.1.5)
+
+PATH
+  remote: chef-utils
+  specs:
+    chef-utils (15.4.54)
 
 PATH
   remote: chef-bin
